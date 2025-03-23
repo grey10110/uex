@@ -2,4 +2,5 @@
 *.UMD
 *_extracted
 *.o
+*.exe
 uex

@@ -1,8 +1,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <sys/stat.h>
 #include <math.h>
+
+#ifdef _WIN32
+    #include <windows.h>
+    #define MKDIR(dir, flags) CreateDirectory(dir, NULL)
+#else
+    #include <sys/stat.h>
+    #define MKDIR(dir, flags) mkdir(dir, flags)
+#endif
 
 void createDirs(char *file_path)
 {
@@ -15,7 +22,7 @@ void createDirs(char *file_path)
         memcpy(dir_path, file_path, dir_path_len);
 
         dir_path[dir_path_len] = '\0';
-        mkdir(dir_path, S_IRWXU|S_IRWXG|S_IROTH);
+        MKDIR(dir_path, S_IRWXU|S_IRWXG|S_IROTH);
         next_sep = strchr(next_sep + 1, '/');
     }
 

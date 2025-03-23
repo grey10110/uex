@@ -7,3 +7,4 @@ It can extract V.1 and V.2 archives.
 ```
 ./uex <archive.umd>
 ```
+On windows you can also drag and drop the umd archive on the executable.
